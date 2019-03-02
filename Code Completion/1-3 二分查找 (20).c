@@ -7,6 +7,7 @@ Position BinarySearch( List L, ElementType X )
 
 		if(X == L->Data[mid])
 			return mid;
+			
 		if(X < L->Data[mid])
 			high = mid - 1;
 		else
