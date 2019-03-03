@@ -1,42 +1,30 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <limits.h>
 
 
 int main()
 {
-	int i, n, cnt, sum, max_sum = INT_MIN, head, tail, max_head = INT_MAX, max_tail;
+	int i, n, cnt, sum, head, max_sum = INT_MIN, max_head, max_tail;
 
-	scanf("%d", &cnt);
+	scanf("%d%d", &cnt, &n);
 
-	for(i = 0, sum = 0; i < cnt; ++i) {
+	for(i = 1, sum = head = max_head = n; i < cnt; ++i) {
 		scanf("%d", &n);
 
-		if(INT_MAX == max_head)
-			max_head = head = n;
-
-		if(-1 == sum) {
-			head = n;
-			sum = 0;
-		}
-
-		if(sum + n >= 0) {
-			tail = n;
+		if(sum < 0)
+			sum = head = n;
+		else
 			sum += n;
 
-			if(max_sum < sum) {
-				max_sum = sum;
-
-				max_head = head;
-				max_tail = tail;
-			}
+		if(sum >= 0 && max_sum < sum) {
+			max_sum = sum;
+			max_head = head;
+			max_tail = n;
 		}
-		else
-			sum = -1;
 	}
 
 	if(INT_MIN == max_sum) {
-		max_sum = 0;
+		max_sum = max_head > 0 ? max_head : 0;
 		max_tail = n;
 	}
 

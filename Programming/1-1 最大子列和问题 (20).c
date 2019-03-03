@@ -1,29 +1,24 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <limits.h>
 
 
 int main()
 {
-	int i, n, cnt, sum, max_sum = INT_MIN;
+	int i, n, cnt, sum, max_sum = 0;
 
-	scanf("%d", &cnt);
+	scanf("%d%d", &cnt, &n);
 
-	for(i = 0, sum = 0; i < cnt; ++i) {
+	for(i = 1, sum = n; i < cnt; ++i) {
 		scanf("%d", &n);
 
-		if(sum + n > 0) {
+		if(sum < 0)
+			sum = n;
+		else
 			sum += n;
 
-			if(max_sum < sum)
-				max_sum = sum;
-		}
-		else
-			sum = 0;
+		if(max_sum < sum)
+			max_sum = sum;
 	}
-
-	if(INT_MIN == max_sum)
-		max_sum = 0;
 
 	printf("%d\n", max_sum);
 
